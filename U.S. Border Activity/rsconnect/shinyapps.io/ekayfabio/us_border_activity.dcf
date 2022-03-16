@@ -1,0 +1,13 @@
+name: us_border_activity
+title: us_border_activity
+username:
+account: ekayfabio
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4442170
+bundleId: 5298488
+url: https://ekayfabio.shinyapps.io/us_border_activity/
+when: 1637993261.49187
+lastSyncTime: 1637993261.4919
+asMultiple: FALSE
+asStatic: FALSE
