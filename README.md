@@ -1,5 +1,4 @@
 # Time Series Analysis on U.S. Immigration Data
-*Note: Refer to the thesis report for more information.*
 
 ## Introduction
 ### Goal
