@@ -22,8 +22,8 @@ tabPanel("Summary",
            style="border-color: grey;"
          ),
          tags$ol(
-           tags$li("What political and economic factors can make a significant impact on U.S. immigration?"),
-           tags$li("How the implementation of U.S. immigration policies and the occurrence of economic events changed immigration in the short term and in the long term?"),
+           tags$li("What political and economic factors significant impact U.S. immigration?"),
+           tags$li("How does the implementation of U.S. immigration policies and the occurrence of economic events change immigration in the short term and in the long term?"),
            tags$li("What are significant emigration trends from sending countries?")
          ),
          ##### Goal #####
