@@ -7,8 +7,8 @@ The goal is to detect trends and outliers from immigration data to monitor the e
 
 ### Research Questions
 This study accomplishes the goal described above by answering the following research questions:
-1.	What political and economic factors can make a significant impact on U.S. immigration?
-2.	How the implementation of U.S. immigration policies and the occurrence of economic events changed immigration in the short term and in the long term?
+1.	What political and economic factors significantly impact U.S. immigration?
+2.	How does the implementation of U.S. immigration policies and the occurrence of economic events change immigration in the short term and in the long term?
 3.	What are significant emigration trends from sending countries?
 
 ## Data
