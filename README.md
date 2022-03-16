@@ -55,4 +55,4 @@ Refer to the following files for clustering assignment for each method:
 - Nonimmigrant (TSA/non_cluster_id.csv)
 
 ## R-Shiny Application
-Files, scripts, and images are under the U.S. Border Activity folder and needed to run the same R-Shiny app on R-Studio. It should appear exactly like the Shiny App website (https://ekayfabio.shinyapps.io/US_TSA/).
+Files, scripts, and images are under the U.S. Border Activity folder and needed to run the same R-Shiny app on R-Studio. Use the app.R file to run the R-Shiny app. It should appear exactly like the Shiny App website (https://ekayfabio.shinyapps.io/US_TSA/).
