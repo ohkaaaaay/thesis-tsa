@@ -34,7 +34,8 @@ The R scripts are listed below:
 Make sure FUNCTIONS_Intervention_Events.R is in the same folder to perform intervention analysis automatically when called the R above R files.
 
 #### Events
-![image](https://user-images.githubusercontent.com/70343375/156901649-668819e0-14fd-4014-b3fa-259b1792f6a7.png)
+![image](https://user-images.githubusercontent.com/70343375/159962744-232308d8-88a5-437a-8318-588a217dfdff.png)
+
 
 ### Time Series Clustering
 #### Parameters
