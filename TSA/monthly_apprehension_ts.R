@@ -44,22 +44,23 @@ abline(v=mon[117], lty=2, col='red') # Jun 2009
 abline(v=mon[232], lty=2, col='green') # Jan 2019
 abline(v=mon[235], lty=2, col='green') # Apr 2019
 # Legend
-legend("topright", c("9/11 Attacks", "Great Recession", "Ramily Sep. Policy"),
-       col=c("black", "red", "blue"), lty=c(2,2))
+legend("topright", c("Great Recession", "Mex. Temp. Hum. Visa"),
+       col=c("red", "green"), lty=c(2,2))
 
 # ggplot2
 par(mfrow=c(1,1))
 ggplot(data=app.monthly, aes(x=Month, y=Number)) + geom_line() + 
   geom_point(alpha=0.5) +
   # Great Recession
-  geom_vline(aes(xintercept=mon[99], color="Great Recession"), linetype="dashed") +
-  geom_vline(aes(xintercept=mon[117], color="Great Recession"), linetype="dashed") +
+  geom_vline(aes(xintercept=mon[99], color="Great Recession", linetype="Great Recession")) +
+  geom_vline(aes(xintercept=mon[117], color="Great Recession", linetype="Great Recession")) +
   # Mexico Temp. Humanitarian Visa
-  geom_vline(aes(xintercept=mon[232], color="Mex. Temp. Hum. Policy"), linetype="dashed") +
-  geom_vline(aes(xintercept=mon[235], color="Mex. Temp. Hum. Policy"), linetype="dashed") +
+  geom_vline(aes(xintercept=mon[232], color="Mex. Temp. Hum. Visa", linetype="Mex. Temp. Hum. Visa")) +
+  geom_vline(aes(xintercept=mon[235], color="Mex. Temp. Hum. Visa", linetype="Mex. Temp. Hum. Visa")) +
   # Labels
   labs(title="U.S. Border Patrol Monthly Apprehensions (FY 2000 - FY 2020)",
-       x="Year", y="Number", col="Intervention Events")
+       x="Year", y="Number", color="Intervention Events",
+       linetype='Intervention Events')
 
 # Histogram
 par(mfrow=c(1,1))

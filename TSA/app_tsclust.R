@@ -29,10 +29,11 @@ hc_sbd_c <- tsclust(country, type="h", k=2L, preproc=zscore, seed=899,
 toc() # 0.1 sec elapsed
 
 # Plotting dendrogram
-par(mar=c(5.5, 4.1, 4.1, 2.1)) # Adjust bottom margin
-as.dendrogram(hc_sbd_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="SBD Average Country Dendrogram",
-                                  ylab="Height")
+par(mfrow=c(1,1))
+sbd_avg_dend <- as.dendrogram(hc_sbd_c) %>% set("branches_k_color", k=2)
+#set("branches_k_color", value=c("black", "dark grey"), k=2)
+labels_colors(sbd_avg_dend) <- "white"
+plot(sbd_avg_dend, main="SBD Average Dendrogram", ylab="Height")
 # View centroid (prototype) and series
 plot(hc_sbd_c, type="sc")
 # View centroids only
@@ -50,10 +51,11 @@ hc_sbd_diana_c <- tsclust(country, type="h", k=2L, preproc=zscore, seed=899,
 toc() # 0.15 sec elapsed
 
 # Plotting dendrogram
-par(mar=c(5.5, 4.1, 4.1, 2.1)) # Adjust bottom margin
-as.dendrogram(hc_sbd_diana_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="SBD Divisive Country Dendrogram",
-                                  ylab="Height")
+par(mfrow=c(1,1))
+sbd_div_dend <- as.dendrogram(hc_sbd_diana_c) %>% set("branches_k_color", k=2)
+#set("branches_k_color", value=c("black", "dark grey"), k=2)
+labels_colors(sbd_div_dend) <- "white"
+plot(sbd_div_dend, main="SBD Divisive Dendrogram", ylab="Height")
 # View centroid (prototype) and series
 plot(hc_sbd_diana_c, type="sc")
 # View centroids only
@@ -81,10 +83,11 @@ hc_dtw_c <- tsclust(country, type="h", k=2L, preproc=zscore, seed=899,
 toc() # 26 sec elapsed
 
 # Plotting dendrogram
-par(mar=c(5.5, 4.1, 4.1, 2.1)) # Adjust bottom margin
-as.dendrogram(hc_dtw_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="DTW Average Country Dendrogram",
-                                  ylab="Height")
+par(mfrow=c(1,1))
+dtw_avg_dend <- as.dendrogram(hc_dtw_c) %>% set("branches_k_color", k=2)
+#set("branches_k_color", value=c("black", "dark grey"), k=2)
+labels_colors(dtw_avg_dend) <- "white"
+plot(dtw_avg_dend, main="DTW Average Dendrogram", ylab="Height")
 # View centroid (prototype) and series
 plot(hc_dtw_c, type="sc")
 # View centroids only
@@ -102,10 +105,11 @@ hc_dtw_diana_c <- tsclust(country, type="h", k=2L, preproc=zscore, seed=899,
 toc() # 26 sec elapsed
 
 # Plotting dendrogram
-par(mar=c(5.5, 4.1, 4.1, 2.1)) # Adjust bottom margin
-as.dendrogram(hc_dtw_diana_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="DTW Divisive Country Dendrogram",
-                                  ylab="Height")
+par(mfrow=c(1,1))
+dtw_div_dend <- as.dendrogram(hc_dtw_diana_c) %>% set("branches_k_color", k=2)
+#set("branches_k_color", value=c("black", "dark grey"), k=2)
+labels_colors(dtw_div_dend) <- "white"
+plot(dtw_div_dend, main="DTW Divisive Dendrogram", ylab="Height")
 # View centroid (prototype) and series
 plot(hc_dtw_diana_c, type="sc")
 # View centroids only
@@ -138,21 +142,13 @@ cl_dissimilarity(hc_avg_all_c)
 ## Dendrogram ##
 par(mfrow=c(2,2))
 # SBD Average
-as.dendrogram(hc_sbd_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="SBD Average Country Dendrogram",
-                                  ylab="Height")
+plot(sbd_avg_dend, main="SBD Average Dendrogram", ylab="Height")
 # SBD DIANA
-as.dendrogram(hc_sbd_diana_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="SBD Divisive Country Dendrogram",
-                                  ylab="Height")
+plot(sbd_div_dend, main="SBD Divisive Dendrogram", ylab="Height")
 # DTW Average
-as.dendrogram(hc_dtw_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="DTW Average Country Dendrogram",
-                                  ylab="Height")
+plot(dtw_avg_dend, main="DTW Average Dendrogram", ylab="Height")
 # DTW DIANA
-as.dendrogram(hc_dtw_diana_c) %>% set("branches_k_color", k=2) %>%
-  set("labels_cex", 0.4) %>% plot(main="DTW Divisive Country Dendrogram",
-                                  ylab="Height")
+plot(dtw_div_dend, main="DTW Divisive Dendrogram", ylab="Height")
 
 ## Prototypes ##
 plot_grid(plot_sbd_c, plot_sbd_diana_c, plot_dtw_c, plot_dtw_diana_c)
@@ -179,11 +175,12 @@ focus <- data.frame(Year, Mexico, Guatemala, Honduras, El_Salvador)
 par(mfrow=c(1,1))
 app.plot <- ggplot(focus, aes(x=Year)) +
   scale_x_discrete(limits=c(2011,2015,2019)) +
-  geom_line(aes(y=Mexico, color="Mexico")) +
-  geom_line(aes(y=Guatemala, color="Guatemala")) +
-  geom_line(aes(y=Honduras, color="Honduras")) +
-  geom_line(aes(y=El_Salvador, color="El Salvador")) +
-  labs(title="Apprehension Time Series", x="Year", y="Number", col="Country")
+  geom_line(aes(y=Mexico, color="Mexico", linetype="Mexico")) +
+  geom_line(aes(y=Guatemala, color="Guatemala", linetype="Guatemala")) +
+  geom_line(aes(y=Honduras, color="Honduras", linetype="Honduras")) +
+  geom_line(aes(y=El_Salvador, color="El Salvador", linetype="El Salvador")) +
+  labs(title="Apprehension Time Series", x="Year", y="Number",
+       color="Country", linetype="Country")
 # Plot of all the datasets in a grid
 #plot_grid(app.plot, lpr.plot, nat.plot, non.plot)
 

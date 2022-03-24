@@ -43,29 +43,34 @@ abline(v=1945, lty=2, col='blue')
 # IRCA
 abline(v=1989, lty=2, col='green')
 abline(v=1991, lty=2, col='green')
+# 9/11 Attacks
+abline(v=2001, lty=2, col='purple')
 # Legend
-legend("topleft", c("World War I", "Great Depression", "World War II", "IRCA"),
-       col=c("black", "red", "blue", "green"), lty=c(2,2))
+legend("topleft", c("World War I", "Great Depression", "World War II", "IRCA", "9/11 Attacks"),
+       col=c("black", "red", "blue", "green", "purple"), lty=c(2,2))
 
 # ggplot2
 par(mfrow=c(1,1))
 ggplot(data=res.yearly, aes(x=Year, y=Number)) + geom_line() +
   geom_point(alpha=0.5) +
   # World War I
-  geom_vline(aes(xintercept=1915, color="World War I"), linetype="dashed") +
-  geom_vline(aes(xintercept=1918, color="World War I"), linetype="dashed") +
+  geom_vline(aes(xintercept=1915, color="World War I", linetype="World War I")) +
+  geom_vline(aes(xintercept=1918, color="World War I", linetype="World War I")) +
   # Great Depression
-  geom_vline(aes(xintercept=1931, color="Great Depression"), linetype="dashed") +
-  geom_vline(aes(xintercept=1938, color="Great Depression"), linetype="dashed") +
+  geom_vline(aes(xintercept=1931, color="Great Depression", linetype="Great Depression")) +
+  geom_vline(aes(xintercept=1938, color="Great Depression", linetype="Great Depression")) +
   # World War II
-  geom_vline(aes(xintercept=1940, color="World War II"), linetype="dashed") +
-  geom_vline(aes(xintercept=1945, color="World War II"), linetype="dashed") +
+  geom_vline(aes(xintercept=1940, color="World War II", linetype="World War II")) +
+  geom_vline(aes(xintercept=1945, color="World War II", linetype="World War II")) +
   # IRCA
-  geom_vline(aes(xintercept=1989, color="IRCA"), linetype="dashed") +
-  geom_vline(aes(xintercept=1991, color="IRCA"), linetype="dashed") +
+  geom_vline(aes(xintercept=1989, color="IRCA", linetype="IRCA")) +
+  geom_vline(aes(xintercept=1991, color="IRCA", linetype="IRCA")) +
+  # 9/11 Attacks
+  geom_vline(aes(xintercept=2001, color="9/11 Attacks", linetype="9/11 Attacks")) +
   # Labels
   labs(title="Annual Lawful Permanent Residents (FY 1820 - 2020)",
-       x="Year", y="Number", color="Intervention Events")
+       x="Year", y="Number", color="Intervention Events",
+       linetype="Intervention Events")
 
 # Histogram
 par(mfrow=c(1,1))
@@ -302,6 +307,26 @@ cfi_170 <- 2*sde_170 # Confidence interval
 abline(h=cfi_170, lty=2) # Upper confidence interval
 abline(h=-cfi_170, lty=2) # Lower confidence interval
 
+# 2001 - September 11 Attacks
+fy[182]
+tp182 <- intervention_events(ls=res, outlier=182, range=1, start=fy[1],
+                            order=order, fixed=fixed)
+tp182$int_event[[1]] # None
+# Plot total impact
+plot_ie(182, tp182$int_event[[1]], tp182$tmp, tp182$perm, tp182$model[[1]],
+        fy[1:201], "Year")[[1]]
+# Estimated coeficients
+coeftest(tp182$model[[1]])
+# Residual analysis
+par(mfrow=c(1,1))
+plot(tp182$model[[1]]$residuals, type='l', ylim=c(-1.5,1.5),
+     main="Res. Analysis of Annual LPR 9/11 Attacks Perm. Model",
+     ylab="Residuals")
+sde_182 <- sqrt(tp182$model[[1]]$sigma2) # Standard deviation of error
+cfi_182 <- 2*sde_182 # Confidence interval
+abline(h=cfi_182, lty=2) # Upper confidence interval
+abline(h=-cfi_182, lty=2) # Lower confidence interval
+
 # NOTE- Measuring recent intervention events lead to a singularity issue.
 # Example: Family Separation Policy for annual data.
 # Reference Link: https://statisticsglobe.com/r-error-in-solve-system-is-exactly-singular
@@ -325,17 +350,17 @@ data_total <- data.frame(
 par(mfrow=c(1,1))
 ggplot(data=data_total, aes(x=time_range, y=value)) + geom_line() +
   # World War I
-  geom_vline(aes(xintercept=1915, color="World War I"), linetype="dashed") +
-  geom_vline(aes(xintercept=1918, color="World War I"), linetype="dashed") +
+  geom_vline(aes(xintercept=1915, color="World War I", linetype="World War I")) +
+  geom_vline(aes(xintercept=1918, color="World War I", linetype="World War I")) +
   # Great Depression
-  geom_vline(aes(xintercept=1931, color="Great Depression"), linetype="dashed") +
-  geom_vline(aes(xintercept=1938, color="Great Depression"), linetype="dashed") +
+  geom_vline(aes(xintercept=1931, color="Great Depression", linetype="Great Depression")) +
+  geom_vline(aes(xintercept=1938, color="Great Depression", linetype="Great Depression")) +
   # World War II
-  geom_vline(aes(xintercept=1940, color="World War II"), linetype="dashed") +
-  geom_vline(aes(xintercept=1945, color="World War II"), linetype="dashed") +
+  geom_vline(aes(xintercept=1940, color="World War II", linetype="World War II")) +
+  geom_vline(aes(xintercept=1945, color="World War II", linetype="World War II")) +
   # IRCA
-  geom_vline(aes(xintercept=1989, color="IRCA"), linetype="dashed") +
-  geom_vline(aes(xintercept=1991, color="IRCA"), linetype="dashed") +
+  geom_vline(aes(xintercept=1989, color="IRCA", linetype="IRCA")) +
+  geom_vline(aes(xintercept=1991, color="IRCA", linetype="IRCA")) +
   # Labels
   labs(title="Annual LPR Intervention Event Total Impact", x="Year", y="",
-       color="Intervention Events")
+       color="Intervention Events", linetype="Intervention Events")
