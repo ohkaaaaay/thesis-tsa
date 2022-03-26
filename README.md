@@ -1,6 +1,8 @@
 # Time Series Analysis on U.S. Immigration Data
 
 ## Introduction
+Refer to Fabio_Thesis_Final.pdf for more detail.
+
 ### Goal
 The goal is to detect trends and outliers from immigration data to monitor the effects of newly implemented immigration policies and of economic events. From monitoring these trends and outliers, immigration flow can be better managed in the U.S.
 
